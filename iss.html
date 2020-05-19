@@ -12,7 +12,13 @@
     />
   </head>
   <body>
-    <div id="map" style="width: 400px; height: 300px;"></div>
+    <h1>ISS Tracker</h1>
+    <div id="test">
+      <h2 id="lat-div">Latitude:</h2>
+      <h2 id="long-div">Longitude:</h2>
+    </div>
+    <div id="map" style="width: 700px; height: 500px;"></div>
+    <script src="/assets/js/app.js"></script>
     <script>
       mapboxgl.accessToken =
         "pk.eyJ1IjoiY2pyb2phczcyIiwiYSI6ImNrYWU2OWwxYzJkcnAycnF2OG83dGZkdDcifQ.WSjPzksGDPS9H8XAmYLSMw";
@@ -20,9 +26,8 @@
         container: "map",
         style: "mapbox://styles/mapbox/streets-v11",
         center: [-74.5, 40], // starting position
-        zoom: 9, // starting zoom
+        zoom: 5, // starting zoom
       });
-
       map.addControl(new mapboxgl.NavigationControl());
     </script>
   </body>
