@@ -25,10 +25,41 @@
       var map = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/mapbox/streets-v11",
-        center: [-74.5, 40], // starting position
-        zoom: 5, // starting zoom
+        center: [0, 0], // starting position
+        zoom: 2, // starting zoom
       });
       map.addControl(new mapboxgl.NavigationControl());
+
+      map.on("load", function () {
+        map.loadImage(`${issImg}`, function (error, image) {
+          if (error) throw error;
+          map.addImage("iss", image);
+          map.addSource("point", {
+            type: "geojson",
+            data: {
+              type: "FeatureCollection",
+              features: [
+                {
+                  type: "Feature",
+                  geometry: {
+                    type: "Point",
+                    coordinates: [0, 0],
+                  },
+                },
+              ],
+            },
+          });
+          map.addLayer({
+            id: "points",
+            type: "symbol",
+            source: "point",
+            layout: {
+              "icon-image": "iss",
+              "icon-size": 0.5,
+            },
+          });
+        });
+      });
     </script>
   </body>
 </html>

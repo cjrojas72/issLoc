@@ -8,10 +8,10 @@ elem.src = `${issImg}`;
 
 testDiv.append(elem);
 
-let getLocation = function (param) {
-  // let $lat = document.getElementById("lat-div");
-  // let $long = document.getElementById("long-div");
+let longData;
+let latData;
 
+let getLocation = function (param) {
   setInterval(async () => {
     const response = await fetch(param)
       .then((response) => response.json())
@@ -25,8 +25,6 @@ let getLocation = function (param) {
 };
 
 let setLocation = function (data) {
-  let latData;
-  let longData;
   let $lat = document.getElementById("lat-div");
   let $long = document.getElementById("long-div");
 
@@ -35,8 +33,6 @@ let setLocation = function (data) {
 
   $lat.innerHTML = `Latitude: ${data.iss_position.latitude}`;
   $long.innerHTML = `Longitude: ${data.iss_position.longitude}`;
-
-  return { lat: latData, long: longData };
 };
 
 getLocation(b_url);
